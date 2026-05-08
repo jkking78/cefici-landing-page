@@ -225,7 +225,7 @@ img {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: url('./public/PHOTO-2026-05-04-10-29-43.jpg');
+    background-image: url('./media/PHOTO-2026-05-04-10-29-43.jpg');
     background-size: cover;
     background-position: center;
     background-color: var(--clr-dark);
@@ -953,21 +953,30 @@ img {
 
 /* TUNNEL DE CONVERSION - FACEBOOK ADS */
 
-/* Top Banner */
-.top-banner {
-    background: #ff4757;
+/* TEXT MARQUEE (Bande Passante) */
+.text-marquee {
+    width: 100%;
+    background-color: var(--clr-primary);
     color: white;
-    text-align: center;
-    padding: 10px 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    overflow: hidden;
+    padding: 15px 0;
+    font-weight: 600;
+    font-size: 1.1rem;
     position: relative;
-    z-index: 1001;
+    z-index: 10;
 }
-.top-banner a {
-    color: white;
-    text-decoration: underline;
-    font-weight: bold;
+.text-marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll-text 20s linear infinite;
+    width: max-content;
+}
+.text-marquee-track span {
+    padding-right: 50px;
+}
+@keyframes scroll-text {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 /* Card Pricing */
