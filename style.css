@@ -1304,4 +1304,8 @@ img {
         top: -50px;
         right: 0;
     }
+    
+    .section {
+        padding: 50px 0; /* Réduction du vide sur mobile */
+    }
 }
