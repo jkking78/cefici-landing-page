@@ -10,6 +10,7 @@
     --clr-primary-light: #d1fae5;
     --clr-text: #334155;
     --clr-text-light: #64748b;
+    --clr-accent: #e11d48; /* Rouge du logo CEFICI */
     
     /* Typography */
     --font-heading: 'Outfit', sans-serif;
@@ -393,8 +394,21 @@ img {
 }
 
 .feature-card .card-price {
-    color: white;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    background: white;
+    color: var(--clr-dark);
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 20px 0 15px;
+    border-top: none;
+}
+
+.feature-card .card-price span {
+    color: var(--clr-accent); /* Rouge */
+    font-weight: 800;
+    font-size: 1.1rem;
 }
 
 .feature-card .btn-primary {
