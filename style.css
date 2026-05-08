@@ -355,10 +355,11 @@ img {
 }
 
 .feature-card {
-    background: white;
+    background: var(--clr-primary);
+    color: white;
     padding: 40px 30px;
     border-radius: var(--radius);
-    border: 1px solid #f1f5f9;
+    border: none;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
@@ -366,14 +367,13 @@ img {
 .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
-    border-color: var(--clr-primary-light);
 }
 
 .feature-icon {
     width: 56px;
     height: 56px;
-    background: var(--clr-primary-light);
-    color: var(--clr-primary-dark);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -384,11 +384,26 @@ img {
 .feature-card h3 {
     font-size: 1.25rem;
     margin-bottom: 12px;
+    color: white;
 }
 
 .feature-card p {
-    color: var(--clr-text-light);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
+}
+
+.feature-card .card-price {
+    color: white;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.feature-card .btn-primary {
+    background: white;
+    color: var(--clr-primary);
+}
+
+.feature-card .btn-primary:hover {
+    background: #f8fafc;
 }
 
 .feature-card-highlight {
