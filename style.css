@@ -1005,7 +1005,7 @@ img {
 /* TEXT MARQUEE (Bande Passante) */
 .text-marquee {
     width: 100%;
-    background-color: var(--clr-primary);
+    background-color: var(--clr-accent); /* Rouge CEFICI au lieu de vert */
     color: white;
     overflow: hidden;
     padding: 15px 0;
