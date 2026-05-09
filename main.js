@@ -110,6 +110,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- LOGIQUE DE FILTRAGE DYNAMIQUE DU FORMULAIRE ---
+    function updateSelectOptions() {
+        const select = document.getElementById('userFormation');
+        if (!select) return;
+
+        // Récupérer les catégories présentes dans le calendrier
+        const activeCategories = new Set();
+        document.querySelectorAll('#agenda .feature-card .card-cta').forEach(btn => {
+            const cat = btn.getAttribute('data-formation');
+            if (cat) activeCategories.add(cat);
+        });
+
+        // Parcourir toutes les options
+        const options = select.querySelectorAll('option');
+        options.forEach(opt => {
+            // Ne pas griser le placeholder ni l'option "Autre"
+            if (opt.value === "" || opt.value === "autre") {
+                opt.disabled = false;
+                return;
+            }
+
+            const optCategory = opt.getAttribute('data-category');
+            if (activeCategories.has(optCategory)) {
+                opt.disabled = false;
+                opt.style.color = ""; // Reset color
+            } else {
+                opt.disabled = true;
+                opt.style.color = "#cbd5e1"; // Gris clair pour montrer que c'est désactivé
+            }
+        });
+    }
+
+    // Appeler au chargement
+    updateSelectOptions();
+
     // --- LOGIQUE LIGHTBOX (Zoom Image) ---
     const lightboxModal = document.getElementById('lightboxModal');
     const lightboxImg = document.getElementById('lightboxImg');
