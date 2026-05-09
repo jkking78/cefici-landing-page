@@ -985,11 +985,13 @@ img {
     /* FIX: Ajustement de la section Hero pour éviter que le texte soit coupé en haut */
     .hero {
         align-items: flex-start;
+        min-height: auto;
+        padding-bottom: 50px;
     }
     
     .hero-content {
-        padding-top: 20px; /* Remonté pour supprimer l'espace vide */
-        padding-bottom: 40px;
+        padding-top: 20px;
+        padding-bottom: 0;
     }
 
     /* FIX: Masquer l'indicateur de scroll sur mobile pour libérer de l'espace */
