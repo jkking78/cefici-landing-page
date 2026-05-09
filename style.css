@@ -1489,4 +1489,33 @@ img {
         font-size: 0.65rem !important;
         padding: 2px 6px !important;
     }
+
+    /* 2 colonnes pour les services sur mobile */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .service-card {
+        padding: 20px 10px !important;
+    }
+
+    .service-img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .service-card h3 {
+        font-size: 0.9rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .service-card p {
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 }
