@@ -972,8 +972,8 @@ img {
     }
     
     .hero-content {
-        padding-top: 130px;
-        padding-bottom: 60px;
+        padding-top: 20px; /* Remonté pour supprimer l'espace vide */
+        padding-bottom: 40px;
     }
 
     /* FIX: Masquer l'indicateur de scroll sur mobile pour libérer de l'espace */
