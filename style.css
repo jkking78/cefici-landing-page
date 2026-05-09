@@ -1408,6 +1408,15 @@ img {
 .service-icon {
     font-size: 3rem;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
 }
 
 .service-card h3 {
