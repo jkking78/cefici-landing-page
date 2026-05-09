@@ -1197,9 +1197,32 @@ img {
     padding: 60px 0 30px;
 }
 
+#galerie .section-header {
+    margin-bottom: 20px;
+}
+
+#galerie .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+#galerie .section-desc {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
     #galerie {
         padding: 30px 0 10px;
+    }
+    #galerie .section-header {
+        margin-bottom: 10px;
+    }
+    #galerie .section-title {
+        font-size: 1.5rem;
+    }
+    #galerie .section-desc {
+        font-size: 0.85rem;
     }
 }
 
