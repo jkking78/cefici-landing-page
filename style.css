@@ -1441,6 +1441,24 @@ img {
         padding: 50px 0; /* Réduction du vide sur mobile */
     }
 
+    .modal-map {
+        height: 150px !important; /* Modal plus compact */
+        margin-bottom: 15px !important;
+    }
+
+    .modal-container {
+        padding: 20px !important;
+    }
+
+    .modal-info h3 {
+        font-size: 1.5rem !important;
+    }
+
+    .modal-info p {
+        font-size: 0.85rem !important;
+        margin-bottom: 15px !important;
+    }
+
     /* 2 colonnes pour les formations sur mobile */
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
