@@ -390,24 +390,24 @@ document.addEventListener('DOMContentLoaded', () => {
             let color = "";
 
             if (diffDays < 0) {
-                text = "✅ Session commencée";
+                text = "Session commencée";
                 color = "#64748b"; // Gris
             } else if (diffDays === 0) {
-                text = "🔥 Débute Aujourd'hui";
+                text = "Débute Aujourd'hui";
                 color = "#ef4444"; // Rouge
             } else if (diffDays === 1) {
-                text = "⏳ Débute demain";
+                text = "Débute demain";
                 color = "#ef4444"; // Rouge
             } else if (diffDays < 7) {
-                text = `⏳ Débute dans ${diffDays} jours`;
+                text = `Débute dans ${diffDays} jours`;
                 if (diffDays <= 3) color = "#ef4444"; // Rouge
                 else color = "#f59e0b"; // Orange
             } else {
                 const diffWeeks = Math.floor(diffDays / 7);
                 if (diffWeeks === 1) {
-                    text = "⏳ Débute dans 1 semaine";
+                    text = "Débute dans 1 semaine";
                 } else {
-                    text = `⏳ Débute dans ${diffWeeks} semaines`;
+                    text = `Débute dans ${diffWeeks} semaines`;
                 }
                 
                 if (diffWeeks <= 2) color = "#f59e0b"; // Orange
