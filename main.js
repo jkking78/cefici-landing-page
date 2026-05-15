@@ -184,31 +184,54 @@ document.addEventListener('DOMContentLoaded', () => {
         const select = document.getElementById('userFormation');
         if (!select) return;
 
-        // Récupérer les catégories présentes dans le calendrier
-        const activeCategories = new Set();
-        document.querySelectorAll('#agenda .feature-card .card-cta').forEach(btn => {
-            const cat = btn.getAttribute('data-formation');
-            if (cat) activeCategories.add(cat);
-        });
-
-        // Parcourir toutes les options
-        const options = select.querySelectorAll('option');
-        options.forEach(opt => {
-            // Ne pas griser le placeholder ni l'option "Autre"
-            if (opt.value === "" || opt.value === "autre") {
-                opt.disabled = false;
-                return;
-            }
-
-            const optCategory = opt.getAttribute('data-category');
-            if (activeCategories.has(optCategory)) {
-                opt.disabled = false;
-                opt.style.color = ""; // Reset color
-            } else {
-                opt.disabled = true;
-                opt.style.color = "#cbd5e1"; // Gris clair pour montrer que c'est désactivé
+        // Collecter les formations actives depuis le catalogue (section #agenda)
+        const activeFormations = [];
+        document.querySelectorAll('#agenda .feature-card').forEach(card => {
+            const btn = card.querySelector('.card-cta');
+            const titleElement = card.querySelector('h3');
+            if (btn && titleElement) {
+                const val = btn.getAttribute('data-formation');
+                const title = titleElement.innerText;
+                if (val) activeFormations.push({ value: val, text: title });
             }
         });
+
+        // Vider le select pour le reconstruire
+        select.innerHTML = '';
+        
+        if (activeFormations.length === 0) {
+            // Aucun cours dans le catalogue
+            const opt = document.createElement('option');
+            opt.value = "";
+            opt.innerText = "Aucune formation disponible pour le moment";
+            select.appendChild(opt);
+        } else if (activeFormations.length === 1) {
+            // Une seule formation : on l'affiche et on la sélectionne par défaut
+            const opt = document.createElement('option');
+            opt.value = activeFormations[0].value;
+            opt.innerText = activeFormations[0].text;
+            opt.selected = true;
+            select.appendChild(opt);
+            
+            // Masquer le champ "Autre" si présent
+            const customGroup = document.getElementById('customFormationGroup');
+            if (customGroup) customGroup.style.display = 'none';
+        } else {
+            // Plusieurs formations : on remet un placeholder et on liste les choix
+            const placeholder = document.createElement('option');
+            placeholder.value = "";
+            placeholder.innerText = "Sélectionnez votre formation";
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            select.appendChild(placeholder);
+            
+            activeFormations.forEach(f => {
+                const opt = document.createElement('option');
+                opt.value = f.value;
+                opt.innerText = f.text;
+                select.appendChild(opt);
+            });
+        }
     }
 
     // Appeler au chargement
@@ -260,13 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const location = document.getElementById('locationInput').value;
             const formationSelect = document.getElementById('userFormation');
             let formation = formationSelect.options[formationSelect.selectedIndex].text;
-            
-            if (formationSelect.value === 'autre') {
-                const customVal = document.getElementById('customFormation').value;
-                if (customVal.trim() !== '') {
-                    formation = `Sur Mesure : ${customVal}`;
-                }
-            }
             
             // Formatage du message pour WhatsApp
             const message = `*NOUVELLE DEMANDE CEFICI*%0A%0A*Nom* : ${name}%0A*Téléphone* : ${phone}%0A*Localisation* : ${location}%0A*Formation* : ${formation}%0A%0A_Merci de me recontacter !_`;
