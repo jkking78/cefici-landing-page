@@ -126,36 +126,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.modal-close');
     const openBtns = document.querySelectorAll('.open-modal-btn');
 
-    openBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Pré-sélection de la formation si l'attribut data-formation existe
-            const formationVal = btn.getAttribute('data-formation');
-            const selectEl = document.getElementById('userFormation');
-            if(formationVal && selectEl) {
-                selectEl.value = formationVal;
-            }
+    if (modal) {
+        openBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Pré-sélection de la formation si l'attribut data-formation existe
+                const formationVal = btn.getAttribute('data-formation');
+                const selectEl = document.getElementById('userFormation');
+                if(formationVal && selectEl) {
+                    selectEl.value = formationVal;
+                }
 
-            modal.classList.add('active');
-            // Close mobile menu if open
-            if(nav.classList.contains('active')) {
-                mobileBtn.classList.remove('active');
-                nav.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                modal.classList.add('active');
+                // Close mobile menu if open
+                if(nav && nav.classList.contains('active')) {
+                    mobileBtn.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
             }
         });
-    });
-
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
+    }
 
     // Gestion de l'affichage du champ "Autre formation"
     const modalFormationSelect = document.getElementById('userFormation');
