@@ -29,6 +29,12 @@
     <!-- End Meta Pixel Code -->
 
     <style>
+        .formation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
         @media (max-width: 768px) {
             .formation-image-container, .formation-video-container {
                 margin-left: -24px !important;
@@ -36,6 +42,9 @@
                 border-radius: 0 !important;
                 box-shadow: none !important;
                 border-bottom: 1px solid #f1f5f9;
+            }
+            .formation-grid {
+                grid-template-columns: 1fr !important;
             }
         }
         
@@ -160,7 +169,7 @@
                 <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">Voir toutes nos formations</a>
             </div>
 
-            <div id="formation-content" class="grid" style="grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; display: none;">
+            <div id="formation-content" class="formation-grid" style="display: none;">
                 <!-- COLONNE IMAGE ET VIDEO -->
                 <div style="display: flex; flex-direction: column; gap: 30px;">
                     <div class="formation-image-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
@@ -352,20 +361,6 @@
                     });
                 });
             }
-            
-            // Adjust layout for mobile
-            if (window.innerWidth < 768 && contentDiv.style.display === 'grid') {
-                contentDiv.style.gridTemplateColumns = '1fr';
-            }
-            window.addEventListener('resize', () => {
-                if(contentDiv.style.display === 'grid') {
-                    if (window.innerWidth < 768) {
-                        contentDiv.style.gridTemplateColumns = '1fr';
-                    } else {
-                        contentDiv.style.gridTemplateColumns = '1fr 1fr';
-                    }
-                }
-            });
         });
     </script>
 </body>
