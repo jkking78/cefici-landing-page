@@ -56,6 +56,7 @@ const formationsData = {
         date: "06 Juin 2026",
         price: "200 000 FCFA",
         image: "media/formation 1.jpg",
+        video: "media/recap cefici.mp4",
         shortDesc: "Formation pratique avec Double Certification Internationale (Durée : 1 mois).",
         longDesc: "Le programme ultime pour devenir Directeur Administratif et Financier ou Responsable Administratif et Financier. Bénéficiez d'une double certification internationale reconnue pour propulser votre carrière au sommet.",
         category: "finance"

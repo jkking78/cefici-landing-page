@@ -167,9 +167,8 @@
                         <img id="detail-image" src="" alt="Affiche Formation" style="width: 100%; height: auto; display: block;">
                     </div>
                     
-                    <div class="formation-video-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #000;">
-                        <video controls autoplay muted style="width: 100%; display: block;">
-                            <source src="media/recap%20cefici.mp4" type="video/mp4">
+                    <div id="detail-video-container" class="formation-video-container" style="display: none; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #000;">
+                        <video id="detail-video" controls autoplay muted style="width: 100%; display: block;">
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
                     </div>
@@ -271,6 +270,16 @@
                 document.getElementById('detail-price').textContent = data.price;
                 document.getElementById('detail-longdesc').textContent = data.longDesc;
                 document.getElementById('detail-image').src = data.image;
+                
+                // Gérer la vidéo spécifique à la formation (si elle existe)
+                const videoContainer = document.getElementById('detail-video-container');
+                const videoPlayer = document.getElementById('detail-video');
+                if(data.video) {
+                    videoPlayer.src = data.video;
+                    videoContainer.style.display = 'block';
+                } else {
+                    videoContainer.style.display = 'none';
+                }
                 
                 // Préremplir le champ caché du formulaire
                 document.getElementById('detailFormationInput').value = data.title;
