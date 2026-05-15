@@ -268,10 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            const budget = document.getElementById('userBudget').value;
-
             // Formatage du message pour WhatsApp
-            const message = `*NOUVELLE DEMANDE CEFICI*%0A%0A*Nom* : ${name}%0A*Téléphone* : ${phone}%0A*Localisation* : ${location}%0A*Formation* : ${formation}%0A*Budget* : ${budget}%0A%0A_Merci de me recontacter !_`;
+            const message = `*NOUVELLE DEMANDE CEFICI*%0A%0A*Nom* : ${name}%0A*Téléphone* : ${phone}%0A*Localisation* : ${location}%0A*Formation* : ${formation}%0A%0A_Merci de me recontacter !_`;
             
             // Numéro WhatsApp CEFICI (format international sans le +)
             const whatsappNumber = "2250717053408"; 
