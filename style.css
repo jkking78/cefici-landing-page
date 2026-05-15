@@ -430,11 +430,13 @@ img {
 
 .feature-card .btn-primary {
     background: white;
-    color: var(--clr-primary);
+    color: #ea580c;
+    border-color: white;
 }
 
 .feature-card .btn-primary:hover {
     background: #f8fafc;
+    color: #c2410c;
 }
 
 .feature-card-highlight {

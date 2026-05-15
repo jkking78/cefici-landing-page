@@ -209,49 +209,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Appeler au chargement
     updateSelectOptions();
 
-    // --- LOGIQUE LIGHTBOX (Zoom Image) ---
+    // --- LOGIQUE LIGHTBOX (Zoom Images) ---
+    const zoomableImages = document.querySelectorAll('.zoomable');
     const lightboxModal = document.getElementById('lightboxModal');
     const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const lightboxActions = document.getElementById('lightboxActions');
+    const lightboxClose = document.getElementById('lightboxClose');
     const lightboxCta = document.getElementById('lightboxCta');
 
-    // Ouverture au clic sur les images zoomables
-    document.querySelectorAll('.zoomable').forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            
-            const formation = img.getAttribute('data-formation-cta');
-            if (formation) {
-                lightboxActions.style.display = 'block';
-                lightboxCta.setAttribute('data-formation', formation);
-            } else {
-                lightboxActions.style.display = 'none';
-            }
-            
-            lightboxModal.classList.add('active');
+    if (lightboxModal && lightboxImg) {
+        zoomableImages.forEach(img => {
+            img.addEventListener('click', () => {
+                const ctaTarget = img.getAttribute('data-formation-cta');
+                if(ctaTarget) {
+                    // Si c'est une image de formation, rediriger directement
+                    window.location.href = `formation.html?id=${ctaTarget}`;
+                    return;
+                }
+                
+                lightboxImg.src = img.src;
+                lightboxCta.style.display = 'none'; // Plus besoin de bouton dans la lightbox
+                lightboxModal.classList.add('active');
+            });
         });
-    });
 
-    // Fermeture de la lightbox
-    if(lightboxClose && lightboxModal) {
         lightboxClose.addEventListener('click', () => {
             lightboxModal.classList.remove('active');
         });
-        
+
         lightboxModal.addEventListener('click', (e) => {
             if (e.target === lightboxModal) {
                 lightboxModal.classList.remove('active');
-            }
-        });
-    }
-
-    // Connexion du CTA de la Lightbox vers la page dédiée
-    if (lightboxCta) {
-        lightboxCta.addEventListener('click', () => {
-            const formationVal = lightboxCta.getAttribute('data-formation');
-            if(formationVal) {
-                window.location.href = `formation.html?id=${formationVal}`;
             }
         });
     }
