@@ -1,3 +1,67 @@
+// --- BASE DE DONNÉES DES FORMATIONS ---
+const formationsData = {
+    "gestion": {
+        id: "gestion",
+        title: "Gestion & Logistique",
+        date: "20 Mai 2026",
+        price: "150 000 FCFA",
+        image: "media/gestion.png",
+        shortDesc: "Trésorerie, Budget, Projet, Stock, Achats, QSHE, Production et Parcs Auto.",
+        longDesc: "Développez vos compétences en gestion d'entreprise et logistique. Ce programme pratique vous rendra opérationnel sur les aspects cruciaux de la chaîne de valeur, des achats à la production, en passant par le contrôle qualité.",
+        category: "gestion"
+    },
+    "finance": {
+        id: "finance",
+        title: "Finances & Fiscalité",
+        date: "27 Mai 2026",
+        price: "150 000 FCFA",
+        image: "media/finance.png",
+        shortDesc: "Comptabilité, Sage Saari, États Financiers, Déclarations, Analyse et Contrôle de gestion.",
+        longDesc: "Maîtrisez les rouages de la finance d'entreprise. De la saisie comptable sur Sage à l'élaboration des états financiers et aux déclarations fiscales, devenez un pilier incontournable de votre direction financière.",
+        category: "finance"
+    },
+    "rh": {
+        id: "rh",
+        title: "Ressources Humaines",
+        date: "03 Juin 2026",
+        price: "150 000 FCFA",
+        image: "media/rh.png",
+        shortDesc: "Paie, Gestion du personnel, Recrutements, Droit du travail et Gestion des emplois.",
+        longDesc: "Acquérez les compétences essentielles pour gérer efficacement le capital humain. Vous apprendrez à traiter la paie, recruter les bons profils, et appliquer le droit du travail ivoirien au quotidien.",
+        category: "rh"
+    },
+    "informatique": {
+        id: "informatique",
+        title: "Informatique & Web",
+        date: "10 Juin 2026",
+        price: "150 000 FCFA",
+        image: "media/it.png",
+        shortDesc: "Développement Web, IA, Analyse de Données, Infographie et Bureautique.",
+        longDesc: "Plongez dans le numérique avec des modules orientés vers l'avenir. Que ce soit pour l'analyse de données, la création de sites web ou l'utilisation professionnelle de l'intelligence artificielle.",
+        category: "informatique"
+    },
+    "dev_perso": {
+        id: "dev_perso",
+        title: "Développement Personnel",
+        date: "17 Juin 2026",
+        price: "150 000 FCFA",
+        image: "media/dev_perso.png",
+        shortDesc: "Art Oratoire, Leadership, Confiance en soi et Découverte de soi.",
+        longDesc: "Réveillez le leader qui sommeille en vous. Améliorez votre prise de parole en public, renforcez votre confiance et développez des aptitudes relationnelles qui feront décoller votre carrière.",
+        category: "dev_perso"
+    },
+    "daf_raf": {
+        id: "daf_raf",
+        title: "Formation DAF / RAF",
+        date: "06 Juin 2026",
+        price: "200 000 FCFA",
+        image: "media/formation 1.jpg",
+        shortDesc: "Formation pratique avec Double Certification Internationale (Durée : 1 mois).",
+        longDesc: "Le programme ultime pour devenir Directeur Administratif et Financier ou Responsable Administratif et Financier. Bénéficiez d'une double certification internationale reconnue pour propulser votre carrière au sommet.",
+        category: "finance"
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // Header Scroll Effect
@@ -182,17 +246,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Connexion du CTA de la Lightbox avec la Modale d'inscription
+    // Connexion du CTA de la Lightbox vers la page dédiée
     if (lightboxCta) {
         lightboxCta.addEventListener('click', () => {
-            lightboxModal.classList.remove('active');
-            modal.classList.add('active');
-            
             const formationVal = lightboxCta.getAttribute('data-formation');
-            if(formationVal && modalFormationSelect) {
-                modalFormationSelect.value = formationVal;
-                // Déclencher l'événement 'change' manuellement au cas où
-                modalFormationSelect.dispatchEvent(new Event('change'));
+            if(formationVal) {
+                window.location.href = `formation.html?id=${formationVal}`;
             }
         });
     }

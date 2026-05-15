@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la Formation | CEFICI</title>
+    <meta name="description" content="Inscrivez-vous à notre formation spécialisée. CEFICI Formation - Cabinet Agréé FDFP.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'VOTRE_PIXEL_ID');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=VOTRE_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body class="bg-light">
+
+    <!-- HEADER SIMPLIFIE -->
+    <header class="header" id="header" style="background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="media/PHOTO-2026-05-04-10-02-44.jpg" alt="CEFICI Formation" class="logo-img">
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">← Retour à l'accueil</a>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: 100px; padding-bottom: 60px;">
+        <div class="container">
+            <div id="formation-not-found" style="display: none; text-align: center; padding: 50px 0;">
+                <h2>Formation introuvable</h2>
+                <p>Désolé, la formation que vous cherchez n'existe pas ou a été retirée.</p>
+                <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">Voir toutes nos formations</a>
+            </div>
+
+            <div id="formation-content" class="grid" style="grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; display: none;">
+                <!-- COLONNE IMAGE -->
+                <div class="formation-image-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img id="detail-image" src="" alt="Affiche Formation" style="width: 100%; height: auto; display: block;">
+                </div>
+
+                <!-- COLONNE INFOS ET FORMULAIRE -->
+                <div class="formation-details-container" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <div style="display: inline-block; background: var(--clr-primary-light); color: var(--clr-primary-dark); padding: 6px 12px; border-radius: 4px; font-weight: 600; font-size: 0.9rem; margin-bottom: 15px;">
+                        📅 Rentrée : <span id="detail-date"></span>
+                    </div>
+                    
+                    <h1 id="detail-title" style="margin-bottom: 15px; font-size: 2rem;"></h1>
+                    <div class="card-price" style="font-size: 1.2rem; margin-bottom: 20px; color: var(--clr-dark);">
+                        Tarif : <span id="detail-price" style="color: var(--clr-primary); font-weight: 800; font-size: 1.5rem;"></span>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="margin-bottom: 10px;">À propos de cette formation :</h3>
+                        <p id="detail-longdesc" style="color: var(--clr-text); line-height: 1.6;"></p>
+                    </div>
+
+                    <div style="border-top: 1px solid #e2e8f0; padding-top: 25px;">
+                        <h3 style="margin-bottom: 20px;">Réserver votre place maintenant</h3>
+                        <form class="custom-form" id="detailRegistrationForm">
+                            <input type="hidden" id="detailFormationInput" name="Formation_Souhaitée">
+                            
+                            <div class="form-group">
+                                <label>Nom complet</label>
+                                <input type="text" id="detailName" name="Nom_Complet" placeholder="Ex: Jean Dupont" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Numéro de téléphone</label>
+                                <input type="tel" id="detailPhone" name="Téléphone" placeholder="Ex: 07 00 00 00 00" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Localisation</label>
+                                <input type="text" id="detailLocation" name="Localisation" placeholder="Ex: Cocody Angré, Abidjan" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Votre budget prévu</label>
+                                <input type="text" id="detailBudget" name="Budget" placeholder="Ex: Je paie comptant" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-full pulse" id="detailSubmitBtn">Confirmer mon inscription</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="margin-bottom: 15px; color: var(--clr-text);">Vous cherchez une autre spécialité ?</p>
+                <a href="index.html#agenda" class="btn btn-outline" style="border: 2px solid var(--clr-primary); color: var(--clr-primary); padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.3s;">Découvrir tout le catalogue</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" style="margin-top: 0;">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 CEFICI Formation. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Logique spécifique à formation.html
+            const params = new URLSearchParams(window.location.search);
+            const formationId = params.get('id');
+            
+            const contentDiv = document.getElementById('formation-content');
+            const notFoundDiv = document.getElementById('formation-not-found');
+            
+            if (formationId && typeof formationsData !== 'undefined' && formationsData[formationId]) {
+                const data = formationsData[formationId];
+                
+                // Remplir la page
+                document.title = data.title + " | CEFICI Formation";
+                document.getElementById('detail-title').textContent = data.title;
+                document.getElementById('detail-date').textContent = data.date;
+                document.getElementById('detail-price').textContent = data.price;
+                document.getElementById('detail-longdesc').textContent = data.longDesc;
+                document.getElementById('detail-image').src = data.image;
+                
+                // Préremplir le champ caché du formulaire
+                document.getElementById('detailFormationInput').value = data.title;
+                
+                contentDiv.style.display = 'grid';
+                
+                // Track PageView spécifique Facebook
+                if (typeof fbq === 'function') {
+                    fbq('track', 'ViewContent', {
+                        content_name: data.title,
+                        content_category: data.category,
+                        currency: 'XOF'
+                    });
+                }
+            } else {
+                notFoundDiv.style.display = 'block';
+            }
+
+            // Gestion du formulaire spécifique à cette page
+            const detailForm = document.getElementById('detailRegistrationForm');
+            if (detailForm) {
+                detailForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('detailName').value;
+                    const phone = document.getElementById('detailPhone').value;
+                    const location = document.getElementById('detailLocation').value;
+                    const budget = document.getElementById('detailBudget').value;
+                    const formation = document.getElementById('detailFormationInput').value;
+                    
+                    const message = `*NOUVELLE DEMANDE CEFICI (Depuis la page dédiée)*%0A%0A*Nom* : ${name}%0A*Téléphone* : ${phone}%0A*Localisation* : ${location}%0A*Formation* : ${formation}%0A*Budget* : ${budget}%0A%0A_Merci de me recontacter !_`;
+                    
+                    const whatsappNumber = "2250717053408"; 
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Lead', {
+                            content_name: formation,
+                            currency: 'XOF'
+                        });
+                    }
+
+                    const btn = document.getElementById('detailSubmitBtn');
+                    const originalText = btn.innerText;
+                    btn.innerText = 'Envoi en cours...';
+                    btn.style.backgroundColor = '#10b981';
+
+                    const formData = new FormData(detailForm);
+                    fetch("https://formspree.io/f/xykopkpb", {
+                        method: "POST",
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    }).then(response => {
+                        if (response.ok) {
+                            btn.innerText = 'Redirection WhatsApp...';
+                            setTimeout(() => {
+                                window.open(whatsappUrl, '_blank');
+                                btn.innerText = originalText;
+                                btn.style.backgroundColor = '';
+                                detailForm.reset();
+                            }, 1000);
+                        } else {
+                            alert("Erreur lors de l'envoi.");
+                            btn.innerText = originalText;
+                            btn.style.backgroundColor = '';
+                        }
+                    }).catch(error => {
+                        alert("Erreur réseau.");
+                        btn.innerText = originalText;
+                        btn.style.backgroundColor = '';
+                    });
+                });
+            }
+            
+            // Adjust layout for mobile
+            if (window.innerWidth < 768 && contentDiv.style.display === 'grid') {
+                contentDiv.style.gridTemplateColumns = '1fr';
+            }
+            window.addEventListener('resize', () => {
+                if(contentDiv.style.display === 'grid') {
+                    if (window.innerWidth < 768) {
+                        contentDiv.style.gridTemplateColumns = '1fr';
+                    } else {
+                        contentDiv.style.gridTemplateColumns = '1fr 1fr';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
