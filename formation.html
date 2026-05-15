@@ -30,7 +30,7 @@
 
     <style>
         @media (max-width: 768px) {
-            .formation-image-container {
+            .formation-image-container, .formation-video-container {
                 margin-left: -24px !important;
                 margin-right: -24px !important;
                 border-radius: 0 !important;
@@ -161,9 +161,18 @@
             </div>
 
             <div id="formation-content" class="grid" style="grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; display: none;">
-                <!-- COLONNE IMAGE -->
-                <div class="formation-image-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <img id="detail-image" src="" alt="Affiche Formation" style="width: 100%; height: auto; display: block;">
+                <!-- COLONNE IMAGE ET VIDEO -->
+                <div style="display: flex; flex-direction: column; gap: 30px;">
+                    <div class="formation-image-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <img id="detail-image" src="" alt="Affiche Formation" style="width: 100%; height: auto; display: block;">
+                    </div>
+                    
+                    <div class="formation-video-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #000;">
+                        <video controls style="width: 100%; display: block;">
+                            <source src="media/recap%20cefici.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                    </div>
                 </div>
 
                 <!-- COLONNE INFOS ET FORMULAIRE -->
