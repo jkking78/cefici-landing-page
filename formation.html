@@ -27,18 +27,31 @@
     src="https://www.facebook.com/tr?id=VOTRE_PIXEL_ID&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+
+    <style>
+        @media (max-width: 768px) {
+            .formation-image-container {
+                margin-left: -24px !important;
+                margin-right: -24px !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                border-bottom: 1px solid #f1f5f9;
+            }
+        }
+    </style>
 </head>
 <body class="bg-light">
 
     <!-- HEADER SIMPLIFIE -->
     <header class="header" id="header" style="background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-        <div class="container nav-container">
+        <div class="container nav-container" style="display: flex; justify-content: space-between; align-items: center;">
             <a href="index.html" class="logo">
                 <img src="media/PHOTO-2026-05-04-10-02-44.jpg" alt="CEFICI Formation" class="logo-img">
             </a>
-            <nav class="nav">
-                <a href="index.html" class="nav-link">← Retour à l'accueil</a>
-            </nav>
+            <a href="index.html" style="font-weight: 600; color: var(--clr-primary); text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Accueil
+            </a>
         </div>
     </header>
 
