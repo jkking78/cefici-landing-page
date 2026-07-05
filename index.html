@@ -117,29 +117,157 @@
             </div>
         </section>
 
-        <!-- PROCHAINES SESSIONS -->
+        <!-- QUESTIONNAIRE D'INSCRIPTION & RESERVATION -->
         <section id="agenda" class="section bg-light" style="background-color: #f8fafc;">
-            <div class="container">
+            <div class="container" style="max-width: 800px;">
                 <div class="section-header reveal">
-                    <h2 class="section-title">Calendrier des Prochaines Sessions</h2>
-                    <p class="section-desc">Ne manquez pas nos prochaines rentrées. Les places sont strictement limitées pour garantir un encadrement pratique et personnalisé.</p>
+                    <h2 class="section-title">Inscription &amp; Réservation</h2>
+                    <p class="section-desc">Remplissez ce formulaire pour indiquer vos besoins et réserver votre session de formation. Nous vous recontacterons rapidement par WhatsApp et par e-mail.</p>
                 </div>
 
-                <div class="grid features-grid" style="max-width: 500px; margin: 0 auto; display: block;">
-                    <!-- NOUVELLE FORMATION DAF / RAF -->
-                    <div class="feature-card reveal" style="padding: 0; overflow: hidden; margin-bottom: 20px;">
-                        <img src="media/formation 1.jpg" alt="Formation DAF / RAF" data-formation-cta="daf_raf" style="width: 100%; height: auto !important; display: block; cursor: pointer;">
-                        <div style="padding: 25px;">
-                            <div style="display: inline-block; background: var(--clr-primary-light); color: var(--clr-primary-dark); padding: 4px 10px; border-radius: 4px; font-weight: 600; font-size: 0.85rem; margin-bottom: 10px;">Rentrée : 06 Juin 2026</div>
-                            <h3>Formation DAF / RAF</h3>
-                            <p>Formation pratique avec Double Certification Internationale (Durée : 1 mois).</p>
-                            <div class="card-price">À partir de <span>200 000 FCFA</span></div>
-                            <a href="formation.html?id=daf_raf" class="btn btn-primary btn-sm card-cta btn-full pulse" data-formation="daf_raf" style="text-align: center; margin-top: 10px;">Voir les détails</a>
+                <div class="reveal" style="background: white; padding: 40px 30px; border-radius: var(--radius); box-shadow: var(--shadow-lg); border-top: 5px solid var(--clr-primary);">
+                    <form class="custom-form" id="questionnaireForm" method="POST">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <!-- Nom et prénoms -->
+                            <div class="form-group">
+                                <label for="qName">Nom et Prénoms *</label>
+                                <input type="text" id="qName" name="Nom_Prénoms" placeholder="Ex: Jean Dupont" required>
+                            </div>
+                            <!-- Lieu de résidence -->
+                            <div class="form-group">
+                                <label for="qResidence">Lieu de résidence *</label>
+                                <input type="text" id="qResidence" name="Lieu_Résidence" placeholder="Ex: Cocody Angré, Abidjan" required>
+                            </div>
                         </div>
-                    </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <!-- Votre fonction -->
+                            <div class="form-group">
+                                <label for="qFonction">Votre Fonction / Profession *</label>
+                                <input type="text" id="qFonction" name="Fonction" placeholder="Ex: Comptable, Étudiant, etc." required>
+                            </div>
+                            <!-- Thème de la formation -->
+                            <div class="form-group">
+                                <label for="qTheme">Thème de la formation *</label>
+                                <select id="qTheme" name="Thème_Formation" required>
+                                    <option value="" disabled selected hidden>Sélectionnez une formation...</option>
+                                    <optgroup label="Formations Pratiques">
+                                        <option value="fiscalite">Fiscalité d'entreprise</option>
+                                        <option value="comptabilite">Comptabilité pratique</option>
+                                        <option value="rh_pratique">Ressources Humaines</option>
+                                        <option value="gestion_projet">Gestion de projet</option>
+                                        <option value="gestion_stock">Gestion de stock</option>
+                                        <option value="gestion_tresorerie">Gestion de trésorerie</option>
+                                        <option value="sage">Sage Paie et Comptabilité</option>
+                                        <option value="etats_financiers">États financiers</option>
+                                        <option value="art_oratoire">Art oratoire</option>
+                                        <option value="informatique">Informatique</option>
+                                    </optgroup>
+                                    <optgroup label="Institut de Formations">
+                                        <option value="daf_raf">Formation en DAF/RAF</option>
+                                        <option value="paie_rh">Formation en Paie et RH</option>
+                                        <option value="gestion_projet_inst">Formation en Gestion de Projet</option>
+                                        <option value="achat_logistique">Formation en Achat Logistique</option>
+                                        <option value="controleurs_gestion">Formation des contrôleurs de gestion</option>
+                                        <option value="leadership">Leadership &amp; Découverte de soi</option>
+                                    </optgroup>
+                                    <optgroup label="Assistances &amp; Conseil">
+                                        <option value="assistance_comptable">Assistance Comptable/Fiscale</option>
+                                        <option value="recrutement">Recrutement de personnel</option>
+                                        <option value="business_plan">Montage de Business Plan</option>
+                                    </optgroup>
+                                    <option value="autre">Autre (Besoin spécifique)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <!-- Contact WhatsApp -->
+                            <div class="form-group">
+                                <label for="qWhatsApp">Contact WhatsApp *</label>
+                                <input type="tel" id="qWhatsApp" name="Contact_WhatsApp" placeholder="Ex: 07 00 00 00 00" required>
+                            </div>
+                            <!-- Contact Joignable -->
+                            <div class="form-group">
+                                <label for="qPhone">Contact Téléphonique Joignable *</label>
+                                <input type="tel" id="qPhone" name="Contact_Joignable" placeholder="Ex: 05 00 00 00 00" required>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <!-- Jours de réservation -->
+                            <div class="form-group">
+                                <label style="margin-bottom: 12px;">Jours d'inscription et de réservation *</label>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Lundi"> Lundi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Mardi"> Mardi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Mercredi"> Mercredi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Jeudi"> Jeudi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Vendredi"> Vendredi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Samedi"> Samedi
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Heures de réservation -->
+                            <div class="form-group">
+                                <label for="qHeures">Heures de réservation souhaitées *</label>
+                                <input type="text" id="qHeures" name="Heures_Réservation" placeholder="Ex: 14h00 - 18h00 ou En matinée" required>
+                            </div>
+                        </div>
+
+                        <!-- Comment avez-vous entendu parler -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="qSource">Comment avez-vous entendu parler de cette formation ? *</label>
+                            <select id="qSource" name="Source_Information" required>
+                                <option value="" disabled selected hidden>Sélectionnez une option...</option>
+                                <option value="WhatsApp">WhatsApp</option>
+                                <option value="Facebook / Instagram">Facebook / Instagram</option>
+                                <option value="Un ami / proche">Un ami / proche</option>
+                                <option value="Affiches / Flyers">Affiches / Flyers</option>
+                                <option value="Ancien participant CEFICI">Ancien participant CEFICI</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <!-- Attentes -->
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="qAttentes">Vos attentes pour cette formation *</label>
+                            <textarea id="qAttentes" name="Attentes_Formation" rows="3" placeholder="Ex: Maîtriser la comptabilité, obtenir une certification, changer de métier..." required style="width: 100%; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 0.95rem; resize: vertical; transition: var(--transition);"></textarea>
+                        </div>
+
+                        <!-- Formation FDFP -->
+                        <div class="form-group" style="margin-bottom: 25px;">
+                            <label style="margin-bottom: 12px;">Vous aimeriez faire une formation FDFP ? *</label>
+                            <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+                                <label style="display: flex; align-items: center; gap: 10px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 1rem; margin-bottom: 0;">
+                                    <input type="radio" name="Formation_FDFP" value="Oui" required style="width: auto; padding: 0; accent-color: var(--clr-primary); width: 18px; height: 18px;"> <span>✅ Oui</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 10px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 1rem; margin-bottom: 0;">
+                                    <input type="radio" name="Formation_FDFP" value="Non" style="width: auto; padding: 0; accent-color: var(--clr-primary); width: 18px; height: 18px;"> <span>❌ Non</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 10px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 1rem; margin-bottom: 0;">
+                                    <input type="radio" name="Formation_FDFP" value="Je ne sais pas encore" style="width: auto; padding: 0; accent-color: var(--clr-primary); width: 18px; height: 18px;"> <span>🤔 Je ne sais pas encore</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full pulse" style="margin-top: 10px;">Envoyer mon inscription</button>
+                    </form>
                 </div>
             </div>
         </section>
+
 
         <!-- DOMAINES DE FORMATION -->
         <section id="domaines" class="section bg-white" style="background-color: #ffffff;">

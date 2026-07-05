@@ -318,7 +318,7 @@
                     const location = document.getElementById('detailLocation').value;
                     const formation = document.getElementById('detailFormationInput').value;
                     
-                    const message = `*NOUVELLE DEMANDE CEFICI (Depuis la page dédiée)*%0A%0A*Nom* : ${name}%0A*Téléphone* : ${phone}%0A*Localisation* : ${location}%0A*Formation* : ${formation}%0A%0A_Merci de me recontacter !_`;
+                    const message = `*NOUVELLE DEMANDE CEFICI (Depuis la page dédiée)*%0A%0A*Nom* : ${encodeURIComponent(name)}%0A*Téléphone* : ${encodeURIComponent(phone)}%0A*Localisation* : ${encodeURIComponent(location)}%0A*Formation* : ${encodeURIComponent(formation)}%0A%0A_Merci de me recontacter !_`;
                     
                     const whatsappNumber = "2250717053408"; 
                     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;

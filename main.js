@@ -179,63 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LOGIQUE DE FILTRAGE DYNAMIQUE DU FORMULAIRE ---
-    function updateSelectOptions() {
-        const select = document.getElementById('userFormation');
-        if (!select) return;
 
-        // Collecter les formations actives depuis le catalogue (section #agenda)
-        const activeFormations = [];
-        document.querySelectorAll('#agenda .feature-card').forEach(card => {
-            const btn = card.querySelector('.card-cta');
-            const titleElement = card.querySelector('h3');
-            if (btn && titleElement) {
-                const val = btn.getAttribute('data-formation');
-                const title = titleElement.innerText;
-                if (val) activeFormations.push({ value: val, text: title });
-            }
-        });
-
-        // Vider le select pour le reconstruire
-        select.innerHTML = '';
-        
-        if (activeFormations.length === 0) {
-            // Aucun cours dans le catalogue
-            const opt = document.createElement('option');
-            opt.value = "";
-            opt.innerText = "Aucune formation disponible pour le moment";
-            select.appendChild(opt);
-        } else if (activeFormations.length === 1) {
-            // Une seule formation : on l'affiche et on la sélectionne par défaut
-            const opt = document.createElement('option');
-            opt.value = activeFormations[0].value;
-            opt.innerText = activeFormations[0].text;
-            opt.selected = true;
-            select.appendChild(opt);
-            
-            // Masquer le champ "Autre" si présent
-            const customGroup = document.getElementById('customFormationGroup');
-            if (customGroup) customGroup.style.display = 'none';
-        } else {
-            // Plusieurs formations : on remet un placeholder et on liste les choix
-            const placeholder = document.createElement('option');
-            placeholder.value = "";
-            placeholder.innerText = "Sélectionnez votre formation";
-            placeholder.disabled = true;
-            placeholder.selected = true;
-            select.appendChild(placeholder);
-            
-            activeFormations.forEach(f => {
-                const opt = document.createElement('option');
-                opt.value = f.value;
-                opt.innerText = f.text;
-                select.appendChild(opt);
-            });
-        }
-    }
-
-    // Appeler au chargement
-    updateSelectOptions();
 
     // --- LOGIQUE LIGHTBOX (Zoom Images) ---
     const zoomableImages = document.querySelectorAll('.zoomable');
@@ -284,8 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const formationSelect = document.getElementById('userFormation');
             let formation = formationSelect.options[formationSelect.selectedIndex].text;
             
-            // Formatage du message pour WhatsApp
-            const message = `*NOUVELLE DEMANDE CEFICI*%0A%0A*Nom* : ${name}%0A*Téléphone* : ${phone}%0A*Localisation* : ${location}%0A*Formation* : ${formation}%0A%0A_Merci de me recontacter !_`;
+            // Formatage du message pour WhatsApp (avec encodage sécurisé)
+            const message = `*NOUVELLE DEMANDE CEFICI*%0A%0A*Nom* : ${encodeURIComponent(name)}%0A*Téléphone* : ${encodeURIComponent(phone)}%0A*Localisation* : ${encodeURIComponent(location)}%0A*Formation* : ${encodeURIComponent(formation)}%0A%0A_Merci de me recontacter !_`;
             
             // Numéro WhatsApp CEFICI (format international sans le +)
             const whatsappNumber = "2250717053408"; 
@@ -322,6 +266,106 @@ document.addEventListener('DOMContentLoaded', () => {
                         btn.style.backgroundColor = '';
                         regForm.reset();
                         modal.classList.remove('active');
+                    }, 1000);
+                } else {
+                    alert("Oups ! Il y a eu un problème lors de l'envoi de l'email.");
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = '';
+                }
+            }).catch(error => {
+                alert("Oups ! Une erreur réseau s'est produite lors de l'envoi.");
+                btn.innerText = originalText;
+                btn.style.backgroundColor = '';
+            });
+        });
+    }
+
+    // Handle form submit for questionnaire
+    const qForm = document.getElementById('questionnaireForm');
+    if(qForm) {
+        qForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Récupération des données du formulaire
+            const name = document.getElementById('qName').value;
+            const residence = document.getElementById('qResidence').value;
+            const fonction = document.getElementById('qFonction').value;
+            
+            const themeSelect = document.getElementById('qTheme');
+            let theme = themeSelect.options[themeSelect.selectedIndex].text;
+            
+            const whatsapp = document.getElementById('qWhatsApp').value;
+            const phone = document.getElementById('qPhone').value;
+            
+            // Jours de réservation (checkboxes)
+            const daysChecked = [];
+            document.querySelectorAll('input[name="Jours_Réservation"]:checked').forEach(cb => {
+                daysChecked.push(cb.value);
+            });
+            const days = daysChecked.join(', ');
+            
+            const hours = document.getElementById('qHeures').value;
+            
+            // Nouveaux champs
+            const sourceSelect = document.getElementById('qSource');
+            const source = sourceSelect.options[sourceSelect.selectedIndex].text;
+            
+            const attentes = document.getElementById('qAttentes').value;
+            
+            const fdfpRadio = document.querySelector('input[name="Formation_FDFP"]:checked');
+            const fdfp = fdfpRadio ? fdfpRadio.value : 'Non précisé';
+            
+            // Formatage du message pour WhatsApp (avec encodage sécurisé)
+            let whatsappMsg = `*📋 NOUVELLE INSCRIPTION & RÉSERVATION - CEFICI*\n\n`;
+            whatsappMsg += `*Nom & Prénoms* : ${name}\n`;
+            whatsappMsg += `*Lieu de résidence* : ${residence}\n`;
+            whatsappMsg += `*Fonction / Métier* : ${fonction}\n`;
+            whatsappMsg += `*Thème de formation* : ${theme}\n`;
+            whatsappMsg += `*Contact WhatsApp* : ${whatsapp}\n`;
+            whatsappMsg += `*Contact Joignable* : ${phone}\n`;
+            whatsappMsg += `*Jours de réservation* : ${days || 'Non précisé'}\n`;
+            whatsappMsg += `*Heures de réservation* : ${hours}\n`;
+            whatsappMsg += `*Source d'information* : ${source}\n`;
+            whatsappMsg += `*Attentes* : ${attentes}\n`;
+            whatsappMsg += `*Formation FDFP souhaitée* : ${fdfp}\n\n`;
+            whatsappMsg += `_Merci de recontacter le participant rapidement._`;
+            
+            const encodedMessage = encodeURIComponent(whatsappMsg);
+            
+            // Numéro WhatsApp CEFICI (format international sans le +)
+            const whatsappNumber = "2250717053408"; 
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Déclenchement de la conversion "Lead" pour Facebook Ads
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead', {
+                    content_name: theme,
+                    currency: 'XOF'
+                });
+            }
+
+            const btn = qForm.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'Envoi en cours...';
+            btn.style.backgroundColor = '#10b981';
+
+            // Envoi à Formspree via Fetch API
+            const formData = new FormData(qForm);
+            
+            fetch("https://formspree.io/f/xykopkpb", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    btn.innerText = 'Redirection WhatsApp...';
+                    setTimeout(() => {
+                        window.open(whatsappUrl, '_blank');
+                        btn.innerText = originalText;
+                        btn.style.backgroundColor = '';
+                        qForm.reset();
                     }, 1000);
                 } else {
                     alert("Oups ! Il y a eu un problème lors de l'envoi de l'email.");
