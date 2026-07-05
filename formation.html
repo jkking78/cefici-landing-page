@@ -174,42 +174,169 @@
                 <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">Voir toutes nos formations</a>
             </div>
 
-            <div id="formation-content" class="formation-grid" style="display: none;">
-                <!-- COLONNE IMAGE ET VIDEO -->
-                <div style="display: flex; flex-direction: column; gap: 30px; min-width: 0;">
+            <div id="formation-content" style="display: none;">
+
+                <!-- TITRE ET BADGE -->
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="display: inline-block; background: var(--clr-primary-light); color: var(--clr-primary-dark); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.95rem; margin-bottom: 12px;">
+                        📅 Rentrée : <span id="detail-date"></span>
+                    </div>
+                    <h1 id="detail-title" style="font-size: 2rem; margin-bottom: 8px;"></h1>
+                    <p id="detail-shortdesc" style="color: var(--clr-text-light); max-width: 600px; margin: 0 auto;"></p>
+                    <div style="margin-top: 12px; font-size: 1.3rem; font-weight: 800; color: var(--clr-primary);">
+                        À partir de <span id="detail-price"></span>
+                    </div>
+                </div>
+
+                <!-- QUESTIONNAIRE COMPLET -->
+                <div style="background: white; padding: 35px 30px; border-radius: var(--radius); box-shadow: var(--shadow-lg); border-top: 5px solid var(--clr-primary); max-width: 800px; margin: 0 auto 50px auto;">
+                    <h2 style="margin-bottom: 8px; font-size: 1.4rem;">📋 Inscription &amp; Réservation</h2>
+                    <p style="color: var(--clr-text-light); margin-bottom: 25px; font-size: 0.95rem;">Remplissez ce formulaire pour réserver votre place. Vous serez recontacté par WhatsApp et par e-mail.</p>
+
+                    <form class="custom-form" id="detailRegistrationForm">
+                        <input type="hidden" id="detailFormationInput" name="Formation_Souhaitée">
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label for="detailName">Nom et Prénoms *</label>
+                                <input type="text" id="detailName" name="Nom_Prénoms" placeholder="Ex: Jean Dupont" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="detailResidence">Lieu de résidence *</label>
+                                <input type="text" id="detailResidence" name="Lieu_Résidence" placeholder="Ex: Cocody Angré, Abidjan" required>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label for="detailFonction">Votre Fonction / Profession *</label>
+                                <input type="text" id="detailFonction" name="Fonction" placeholder="Ex: Comptable, Étudiant, etc." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="detailTheme">Thème de la formation *</label>
+                                <select id="detailTheme" name="Thème_Formation" required>
+                                    <option value="" disabled selected hidden>Sélectionnez une formation...</option>
+                                    <optgroup label="Formations Pratiques">
+                                        <option value="fiscalite">Fiscalité d'entreprise</option>
+                                        <option value="comptabilite">Comptabilité pratique</option>
+                                        <option value="rh_pratique">Ressources Humaines</option>
+                                        <option value="gestion_projet">Gestion de projet</option>
+                                        <option value="gestion_stock">Gestion de stock</option>
+                                        <option value="gestion_tresorerie">Gestion de trésorerie</option>
+                                        <option value="sage">Sage Paie et Comptabilité</option>
+                                        <option value="etats_financiers">États financiers</option>
+                                        <option value="art_oratoire">Art oratoire</option>
+                                        <option value="informatique">Informatique</option>
+                                    </optgroup>
+                                    <optgroup label="Institut de Formations">
+                                        <option value="daf_raf" selected>Formation en DAF/RAF</option>
+                                        <option value="paie_rh">Formation en Paie et RH</option>
+                                        <option value="gestion_projet_inst">Formation en Gestion de Projet</option>
+                                        <option value="achat_logistique">Formation en Achat Logistique</option>
+                                        <option value="controleurs_gestion">Formation des contrôleurs de gestion</option>
+                                        <option value="leadership">Leadership &amp; Découverte de soi</option>
+                                    </optgroup>
+                                    <optgroup label="Assistances &amp; Conseil">
+                                        <option value="assistance_comptable">Assistance Comptable/Fiscale</option>
+                                        <option value="recrutement">Recrutement de personnel</option>
+                                        <option value="business_plan">Montage de Business Plan</option>
+                                    </optgroup>
+                                    <option value="autre">Autre (Besoin spécifique)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label for="detailWhatsApp">Contact WhatsApp *</label>
+                                <input type="tel" id="detailWhatsApp" name="Contact_WhatsApp" placeholder="Ex: 07 00 00 00 00" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="detailPhone">Contact Téléphonique Joignable *</label>
+                                <input type="tel" id="detailPhone" name="Contact_Joignable" placeholder="Ex: 05 00 00 00 00" required>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label style="margin-bottom: 12px;">Jours d'inscription et de réservation *</label>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Lundi"> Lundi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Mardi"> Mardi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Mercredi"> Mercredi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Jeudi"> Jeudi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Vendredi"> Vendredi
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 0.9rem; margin-bottom: 0;">
+                                        <input type="checkbox" name="Jours_Réservation" value="Samedi"> Samedi
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="detailHeures">Heures de réservation souhaitées *</label>
+                                <input type="text" id="detailHeures" name="Heures_Réservation" placeholder="Ex: 14h00 - 18h00 ou En matinée" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="detailSource">Comment avez-vous entendu parler de cette formation ? *</label>
+                            <select id="detailSource" name="Source_Information" required>
+                                <option value="" disabled selected hidden>Sélectionnez une option...</option>
+                                <option value="WhatsApp">WhatsApp</option>
+                                <option value="Facebook / Instagram">Facebook / Instagram</option>
+                                <option value="Un ami / proche">Un ami / proche</option>
+                                <option value="Affiches / Flyers">Affiches / Flyers</option>
+                                <option value="Ancien participant CEFICI">Ancien participant CEFICI</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="detailAttentes">Vos attentes pour cette formation *</label>
+                            <textarea id="detailAttentes" name="Attentes_Formation" rows="3" placeholder="Ex: Maîtriser la comptabilité, obtenir une certification, changer de métier..." required style="width: 100%; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 0.95rem; resize: vertical;"></textarea>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 25px;">
+                            <label style="margin-bottom: 12px;">Vous aimeriez faire une formation FDFP ? *</label>
+                            <div style="display: flex; gap: 25px; align-items: center; flex-wrap: wrap;">
+                                <label style="display: flex; align-items: center; gap: 10px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 1rem; margin-bottom: 0;">
+                                    <input type="radio" name="Formation_FDFP" value="Oui" required style="width: 18px; height: 18px; accent-color: var(--clr-primary);"> ✅ Oui
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 10px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 1rem; margin-bottom: 0;">
+                                    <input type="radio" name="Formation_FDFP" value="Non" style="width: 18px; height: 18px; accent-color: var(--clr-primary);"> ❌ Non
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 10px; font-weight: normal; cursor: pointer; color: var(--clr-text); font-size: 1rem; margin-bottom: 0;">
+                                    <input type="radio" name="Formation_FDFP" value="Je ne sais pas encore" style="width: 18px; height: 18px; accent-color: var(--clr-primary);"> 🤔 Je ne sais pas encore
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full pulse" id="detailSubmitBtn" style="font-size: 1.1rem; padding: 16px;">Envoyer mon inscription</button>
+                    </form>
+                </div>
+
+                <!-- AFFICHE PUBLICITAIRE + VIDEO (EN DESSOUS DU FORMULAIRE) -->
+                <div style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
                     <div class="formation-image-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                         <img id="detail-image" src="" alt="Affiche Formation" style="width: 100%; height: auto; display: block;">
                     </div>
-                    
                     <div id="detail-video-container" class="formation-video-container" style="display: none; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #000;">
-                        <video id="detail-video" controls autoplay muted style="width: 100%; display: block;">
+                        <video id="detail-video" controls muted style="width: 100%; display: block;">
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
                     </div>
-                    
-                    <a href="#detailRegistrationForm" class="btn btn-primary btn-full pulse" style="font-size: 1.2rem; font-weight: bold; text-align: center; border-radius: 12px;">S'inscrire maintenant</a>
-                </div>
 
-                <!-- COLONNE INFOS ET FORMULAIRE -->
-                <div class="formation-details-container" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); min-width: 0; overflow: hidden;">
-                    <div style="text-align: center; margin-bottom: 15px;">
-                        <div style="display: inline-block; background: var(--clr-primary-light); color: var(--clr-primary-dark); padding: 6px 12px; border-radius: 4px; font-weight: 600; font-size: 0.9rem;">
-                            Rentrée : <span id="detail-date"></span>
-                        </div>
-                    </div>
-                    
-                    <h1 style="margin-bottom: 15px; font-size: 2rem; text-align: center;">Détails de la formation</h1>
-                    <div class="card-price" style="font-size: 1.2rem; margin-bottom: 20px; color: var(--clr-dark); text-align: center; border-top: none; padding-top: 0;">
-                        Tarif : <span id="detail-price" style="color: var(--clr-primary); font-weight: 800; font-size: 1.5rem;"></span>
-                    </div>
-                    
-                    <div style="margin-bottom: 30px;">
-                        <h3 style="margin-bottom: 10px;">À propos de cette formation :</h3>
-                        <p id="detail-longdesc" style="color: var(--clr-text); line-height: 1.6;"></p>
-                    </div>
-
-                    <!-- GALERIE LAUREATS (Marquee) -->
-                    <div style="margin-bottom: 40px; margin-left: -30px; margin-right: -30px; overflow: hidden; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 20px 0; background: #f8fafc;">
+                    <!-- GALERIE LAUREATS -->
+                    <div style="overflow: hidden; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 20px 0; background: #f8fafc; border-radius: 12px;">
                         <h3 style="text-align: center; margin-bottom: 20px; font-size: 1.1rem; color: var(--clr-text-light);">Ils nous ont fait confiance</h3>
                         <div class="marquee-container" style="padding: 0;">
                             <div class="marquee-track">
@@ -222,29 +349,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div style="border-top: 1px solid #e2e8f0; padding-top: 25px;">
-                        <h3 style="margin-bottom: 20px;">Réserver votre place maintenant</h3>
-                        <form class="custom-form" id="detailRegistrationForm">
-                            <input type="hidden" id="detailFormationInput" name="Formation_Souhaitée">
-                            
-                            <div class="form-group">
-                                <label>Nom complet</label>
-                                <input type="text" id="detailName" name="Nom_Complet" placeholder="Ex: Jean Dupont" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Numéro de téléphone</label>
-                                <input type="tel" id="detailPhone" name="Téléphone" placeholder="Ex: 07 00 00 00 00" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Localisation</label>
-                                <input type="text" id="detailLocation" name="Localisation" placeholder="Ex: Cocody Angré, Abidjan" required>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary btn-full pulse" id="detailSubmitBtn">Confirmer mon inscription</button>
-                        </form>
-                    </div>
                 </div>
+
             </div>
             
             <div style="text-align: center; margin-top: 60px;">
@@ -263,7 +369,6 @@
     <script src="main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Logique spécifique à formation.html
             const params = new URLSearchParams(window.location.search);
             const formationId = params.get('id');
             
@@ -273,14 +378,29 @@
             if (formationId && typeof formationsData !== 'undefined' && formationsData[formationId]) {
                 const data = formationsData[formationId];
                 
-                // Remplir la page
+                // Remplir les informations
                 document.title = data.title + " | CEFICI Formation";
                 document.getElementById('detail-date').textContent = data.date;
                 document.getElementById('detail-price').textContent = data.price;
-                document.getElementById('detail-longdesc').textContent = data.longDesc;
+                document.getElementById('detail-title').textContent = data.title;
+                if(document.getElementById('detail-shortdesc')) {
+                    document.getElementById('detail-shortdesc').textContent = data.shortDesc || '';
+                }
                 document.getElementById('detail-image').src = data.image;
+                document.getElementById('detailFormationInput').value = data.title;
+
+                // Présélectionner la formation dans le select
+                const themeSelect = document.getElementById('detailTheme');
+                if(themeSelect) {
+                    for(let i = 0; i < themeSelect.options.length; i++) {
+                        if(themeSelect.options[i].value === formationId) {
+                            themeSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
                 
-                // Gérer la vidéo spécifique à la formation (si elle existe)
+                // Gérer la vidéo
                 const videoContainer = document.getElementById('detail-video-container');
                 const videoPlayer = document.getElementById('detail-video');
                 if(data.video) {
@@ -290,12 +410,8 @@
                     videoContainer.style.display = 'none';
                 }
                 
-                // Préremplir le champ caché du formulaire
-                document.getElementById('detailFormationInput').value = data.title;
+                contentDiv.style.display = 'block';
                 
-                contentDiv.style.display = 'grid';
-                
-                // Track PageView spécifique Facebook
                 if (typeof fbq === 'function') {
                     fbq('track', 'ViewContent', {
                         content_name: data.title,
@@ -307,27 +423,60 @@
                 notFoundDiv.style.display = 'block';
             }
 
-            // Gestion du formulaire spécifique à cette page
+            // Gestion du formulaire complet
             const detailForm = document.getElementById('detailRegistrationForm');
             if (detailForm) {
                 detailForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     
                     const name = document.getElementById('detailName').value;
+                    const residence = document.getElementById('detailResidence').value;
+                    const fonction = document.getElementById('detailFonction').value;
+
+                    const themeSelect = document.getElementById('detailTheme');
+                    const theme = themeSelect.options[themeSelect.selectedIndex].text;
+
+                    const whatsapp = document.getElementById('detailWhatsApp').value;
                     const phone = document.getElementById('detailPhone').value;
-                    const location = document.getElementById('detailLocation').value;
-                    const formation = document.getElementById('detailFormationInput').value;
-                    
-                    const message = `*NOUVELLE DEMANDE CEFICI (Depuis la page dédiée)*%0A%0A*Nom* : ${encodeURIComponent(name)}%0A*Téléphone* : ${encodeURIComponent(phone)}%0A*Localisation* : ${encodeURIComponent(location)}%0A*Formation* : ${encodeURIComponent(formation)}%0A%0A_Merci de me recontacter !_`;
-                    
+
+                    // Jours cochés
+                    const daysChecked = [];
+                    detailForm.querySelectorAll('input[name="Jours_Réservation"]:checked').forEach(cb => {
+                        daysChecked.push(cb.value);
+                    });
+                    const days = daysChecked.join(', ');
+
+                    const hours = document.getElementById('detailHeures').value;
+
+                    const sourceSelect = document.getElementById('detailSource');
+                    const source = sourceSelect.options[sourceSelect.selectedIndex].text;
+
+                    const attentes = document.getElementById('detailAttentes').value;
+
+                    const fdfpRadio = detailForm.querySelector('input[name="Formation_FDFP"]:checked');
+                    const fdfp = fdfpRadio ? fdfpRadio.value : 'Non précisé';
+
+                    // Message WhatsApp
+                    let whatsappMsg = `*📋 NOUVELLE INSCRIPTION & RÉSERVATION - CEFICI*\n\n`;
+                    whatsappMsg += `*Formation* : ${theme}\n`;
+                    whatsappMsg += `*Nom & Prénoms* : ${name}\n`;
+                    whatsappMsg += `*Lieu de résidence* : ${residence}\n`;
+                    whatsappMsg += `*Fonction / Métier* : ${fonction}\n`;
+                    whatsappMsg += `*Contact WhatsApp* : ${whatsapp}\n`;
+                    whatsappMsg += `*Contact Joignable* : ${phone}\n`;
+                    whatsappMsg += `*Jours de réservation* : ${days || 'Non précisé'}\n`;
+                    whatsappMsg += `*Heures de réservation* : ${hours}\n`;
+                    whatsappMsg += `*Source d'information* : ${source}\n`;
+                    whatsappMsg += `*Attentes* : ${attentes}\n`;
+                    whatsappMsg += `*Formation FDFP souhaitée* : ${fdfp}\n\n`;
+                    whatsappMsg += `_Merci de recontacter le participant rapidement._`;
+
+                    const encodedMessage = encodeURIComponent(whatsappMsg);
                     const whatsappNumber = "2250717053408"; 
-                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
                     if (typeof fbq === 'function') {
-                        fbq('track', 'Lead', {
-                            content_name: formation,
-                            currency: 'XOF'
-                        });
+                        fbq('track', 'Lead', { content_name: theme, currency: 'XOF' });
                     }
 
                     const btn = document.getElementById('detailSubmitBtn');
@@ -350,12 +499,12 @@
                                 detailForm.reset();
                             }, 1000);
                         } else {
-                            alert("Erreur lors de l'envoi.");
+                            alert("Erreur lors de l'envoi. Veuillez réessayer.");
                             btn.innerText = originalText;
                             btn.style.backgroundColor = '';
                         }
                     }).catch(error => {
-                        alert("Erreur réseau.");
+                        alert("Erreur réseau. Veuillez réessayer.");
                         btn.innerText = originalText;
                         btn.style.backgroundColor = '';
                     });
