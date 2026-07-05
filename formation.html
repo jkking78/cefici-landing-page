@@ -322,13 +322,18 @@
 
                         <button type="submit" class="btn btn-primary btn-full pulse" id="detailSubmitBtn" style="font-size: 1.1rem; padding: 16px;">Envoyer mon inscription</button>
                     </form>
+
+                    <!-- SLOGAN -->
+                    <div style="margin-top: 30px; padding: 20px 25px; background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark, #1a7a3a)); border-radius: 12px; text-align: center;">
+                        <p style="color: white; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; margin: 0; line-height: 1.5;">🏆 LA BONNE QUALITÉ DE NOS FORMATIONS FERA TOUJOURS LA DIFFÉRENCE.</p>
+                    </div>
                 </div>
 
-                <!-- AFFICHE PUBLICITAIRE + VIDEO (EN DESSOUS DU FORMULAIRE) -->
-                <div style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
-                    <div class="formation-image-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <img id="detail-image" src="" alt="Affiche Formation" style="width: 100%; height: auto; display: block;">
-                    </div>
+                <!-- VIDEO + GALERIE (AFFICHE SUPPRIMEE) -->
+                <div style="max-width: 600px; margin: 30px auto 0; display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Image cachée (nécessaire pour le JS mais invisible) -->
+                    <img id="detail-image" src="" alt="" style="display: none;">
+
                     <div id="detail-video-container" class="formation-video-container" style="display: none; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #000;">
                         <video id="detail-video" controls muted style="width: 100%; display: block;">
                             Votre navigateur ne supporte pas la vidéo.
