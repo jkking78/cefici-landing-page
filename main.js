@@ -225,8 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = document.getElementById('userName').value;
             const phone = document.getElementById('userPhone').value;
             const location = document.getElementById('locationInput').value;
-            const formationSelect = document.getElementById('userFormation');
-            let formation = formationSelect.options[formationSelect.selectedIndex].text;
+            const formation = document.getElementById('userFormation').value;
             
             // Formatage du message pour WhatsApp (avec encodage sécurisé)
             const message = `*NOUVELLE DEMANDE CEFICI*%0A%0A*Nom* : ${encodeURIComponent(name)}%0A*Téléphone* : ${encodeURIComponent(phone)}%0A*Localisation* : ${encodeURIComponent(location)}%0A*Formation* : ${encodeURIComponent(formation)}%0A%0A_Merci de me recontacter !_`;
