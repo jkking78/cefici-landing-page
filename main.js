@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     btn.innerText = 'Redirection WhatsApp...';
                     setTimeout(() => {
-                        window.open(whatsappUrl, '_blank');
+                        window.location.href = whatsappUrl;
                         btn.innerText = originalText;
                         btn.style.backgroundColor = '';
                         regForm.reset();
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     btn.innerText = 'Redirection WhatsApp...';
                     setTimeout(() => {
-                        window.open(whatsappUrl, '_blank');
+                        window.location.href = whatsappUrl;
                         btn.innerText = originalText;
                         btn.style.backgroundColor = '';
                         qForm.reset();
