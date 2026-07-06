@@ -178,18 +178,18 @@
 
                 <!-- TITRE -->
                 <div style="text-align: center; margin-bottom: 30px;">
-                    <!-- date masquée pour le JS -->
+                    <!-- date et titre masqués pour le JS, car le client veut juste INSCRIPTION/RESERVATION -->
                     <span id="detail-date" style="display:none;"></span>
-                    <h1 id="detail-title" style="font-size: 2rem; margin-bottom: 8px;"></h1>
+                    <h1 id="detail-title" style="display:none;"></h1>
                     <p id="detail-shortdesc" style="color: var(--clr-text-light); max-width: 600px; margin: 0 auto;"></p>
-                    <div style="margin-top: 12px; font-size: 1.3rem; font-weight: 800; color: var(--clr-primary);">
+                    <div style="display:none; margin-top: 12px; font-size: 1.3rem; font-weight: 800; color: var(--clr-primary);">
                         À partir de <span id="detail-price"></span>
                     </div>
                 </div>
 
                 <!-- QUESTIONNAIRE COMPLET -->
                 <div style="background: white; padding: 35px 30px; border-radius: var(--radius); box-shadow: var(--shadow-lg); border-top: 5px solid var(--clr-primary); max-width: 800px; margin: 0 auto 50px auto;">
-                    <h2 style="margin-bottom: 8px; font-size: 1.4rem;">📋 Inscription &amp; Réservation</h2>
+                    <h2 style="margin-bottom: 8px; font-size: 1.4rem;">📋 INSCRIPTION / RÉSERVATION</h2>
                     <p style="color: var(--clr-text-light); margin-bottom: 25px; font-size: 0.95rem;">Remplissez ce formulaire pour réserver votre place. Vous serez recontacté par WhatsApp et par e-mail.</p>
 
                     <form class="custom-form" id="detailRegistrationForm">
@@ -213,35 +213,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="detailTheme">Thème de la formation *</label>
-                                <select id="detailTheme" name="Thème_Formation" required>
-                                    <option value="" disabled selected hidden>Sélectionnez une formation...</option>
-                                    <optgroup label="Formations Pratiques">
-                                        <option value="fiscalite">Fiscalité d'entreprise</option>
-                                        <option value="comptabilite">Comptabilité pratique</option>
-                                        <option value="rh_pratique">Ressources Humaines</option>
-                                        <option value="gestion_projet">Gestion de projet</option>
-                                        <option value="gestion_stock">Gestion de stock</option>
-                                        <option value="gestion_tresorerie">Gestion de trésorerie</option>
-                                        <option value="sage">Sage Paie et Comptabilité</option>
-                                        <option value="etats_financiers">États financiers</option>
-                                        <option value="art_oratoire">Art oratoire</option>
-                                        <option value="informatique">Informatique</option>
-                                    </optgroup>
-                                    <optgroup label="Institut de Formations">
-                                        <option value="daf_raf" selected>Formation en DAF/RAF</option>
-                                        <option value="paie_rh">Formation en Paie et RH</option>
-                                        <option value="gestion_projet_inst">Formation en Gestion de Projet</option>
-                                        <option value="achat_logistique">Formation en Achat Logistique</option>
-                                        <option value="controleurs_gestion">Formation des contrôleurs de gestion</option>
-                                        <option value="leadership">Leadership &amp; Découverte de soi</option>
-                                    </optgroup>
-                                    <optgroup label="Assistances &amp; Conseil">
-                                        <option value="assistance_comptable">Assistance Comptable/Fiscale</option>
-                                        <option value="recrutement">Recrutement de personnel</option>
-                                        <option value="business_plan">Montage de Business Plan</option>
-                                    </optgroup>
-                                    <option value="autre">Autre (Besoin spécifique)</option>
-                                </select>
+                                <input type="text" id="detailTheme" name="Thème_Formation" placeholder="Ex: Formation en DAF/RAF, Comptabilité..." required>
                             </div>
                         </div>
 
@@ -393,15 +365,10 @@
                 document.getElementById('detail-image').src = data.image;
                 document.getElementById('detailFormationInput').value = data.title;
 
-                // Présélectionner la formation dans le select
-                const themeSelect = document.getElementById('detailTheme');
-                if(themeSelect) {
-                    for(let i = 0; i < themeSelect.options.length; i++) {
-                        if(themeSelect.options[i].value === formationId) {
-                            themeSelect.selectedIndex = i;
-                            break;
-                        }
-                    }
+                // Préremplir le champ texte
+                const themeInput = document.getElementById('detailTheme');
+                if(themeInput) {
+                    themeInput.value = data.title;
                 }
                 
                 // Gérer la vidéo
@@ -437,8 +404,7 @@
                     const residence = document.getElementById('detailResidence').value;
                     const fonction = document.getElementById('detailFonction').value;
 
-                    const themeSelect = document.getElementById('detailTheme');
-                    const theme = themeSelect.options[themeSelect.selectedIndex].text;
+                    const theme = document.getElementById('detailTheme').value;
 
                     const whatsapp = document.getElementById('detailWhatsApp').value;
                     const phone = document.getElementById('detailPhone').value;
