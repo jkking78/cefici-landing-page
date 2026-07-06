@@ -291,8 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const residence = document.getElementById('qResidence').value;
             const fonction = document.getElementById('qFonction').value;
             
-            const themeSelect = document.getElementById('qTheme');
-            let theme = themeSelect.options[themeSelect.selectedIndex].text;
+            const theme = document.getElementById('qTheme').value;
             
             const whatsapp = document.getElementById('qWhatsApp').value;
             const phone = document.getElementById('qPhone').value;
