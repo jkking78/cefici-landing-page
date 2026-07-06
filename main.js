@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const zoomableImages = document.querySelectorAll('.zoomable');
     const lightboxModal = document.getElementById('lightboxModal');
     const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxClose = document.querySelector('.lightbox-close');
     const lightboxCta = document.getElementById('lightboxCta');
 
     if (lightboxModal && lightboxImg) {
